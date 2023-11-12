@@ -1,0 +1,525 @@
+{
+	"info": {
+		"_postman_id": "16f37c29-66e2-4bc8-83be-c72f83e87ae3",
+		"name": "Akka Telemetry",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1644939",
+		"_collection_link": "https://marketaxess.postman.co/workspace/My-Workspace~6398942d-31c2-4ffe-8d0d-5171fa41bc36/collection/1644939-16f37c29-66e2-4bc8-83be-c72f83e87ae3?action=share&source=collection_link&creator=1644939"
+	},
+	"item": [
+		{
+			"name": "Customer 2551",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var firstName = pm.variables.replaceIn('{{$randomFirstName}}');",
+							"var lastName = pm.variables.replaceIn('{{$randomLastName}}');",
+							"var username = firstName+\".\"+lastName;",
+							"var email = username+\"@\"+\"example.com\";",
+							"console.info(\"First Name is: \"+ firstName);",
+							"console.info(\"Last Name is: \"+ lastName);",
+							"console.info(\"Username is: \"+ username);",
+							"console.info(\"Email is: \"+ email);",
+							"",
+							"pm.variables.set(\"firstName\", firstName);",
+							"pm.variables.set(\"lastName\", lastName);",
+							"pm.variables.set(\"email\", email);",
+							"pm.variables.set(\"username\", username);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"let username = jsonData.customerId;",
+							"pm.environment.set(\"username\", username);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"fullname\": \"{{firstName}} {{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phone\": \"{{$randomPhoneNumber}}\",\n    \"address\": \"{{$randomStreetAddress}}\"\n}"
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:9551/customers",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "9551",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer 2552",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var firstName = pm.variables.replaceIn('{{$randomFirstName}}');",
+							"var lastName = pm.variables.replaceIn('{{$randomLastName}}');",
+							"var username = firstName+\".\"+lastName;",
+							"var email = username+\"@\"+\"example.com\";",
+							"console.info(\"First Name is: \"+ firstName);",
+							"console.info(\"Last Name is: \"+ lastName);",
+							"console.info(\"Username is: \"+ username);",
+							"console.info(\"Email is: \"+ email);",
+							"",
+							"pm.variables.set(\"firstName\", firstName);",
+							"pm.variables.set(\"lastName\", lastName);",
+							"pm.variables.set(\"email\", email);",
+							"pm.variables.set(\"username\", username);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"let username = jsonData.customerId;",
+							"pm.environment.set(\"username\", username);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"{{username}}\",\n    \"fullname\": \"{{firstName}} {{lastName}}\",\n    \"email\": \"{{email}}\",\n    \"phone\": \"{{$randomPhoneNumber}}\",\n    \"address\": \"{{$randomStreetAddress}}\"\n}"
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:9552/customers",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "9552",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer 2551",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"let username = jsonData.username;",
+							"pm.environment.set(\"username\", username);",
+							"let fullname = jsonData.fullname;",
+							"const myArray = fullname.split(\" \");",
+							"let firstName = myArray[0];",
+							"pm.environment.set(\"firstName\", firstName);",
+							"let lastName = myArray[1];",
+							"pm.environment.set(\"lastName\", lastName);",
+							"let email = jsonData.email;",
+							"pm.environment.set(\"email\", email);",
+							"",
+							"console.log(\"username was: \"+ username)",
+							"console.log(\"firstName was: \"+ firstName)",
+							"console.log(\"lastName was: \"+ lastName)",
+							"console.log(\"email was: \"+ email)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:9551/customers/{{username}}",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "9551",
+					"path": [
+						"customers",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Customer 2552",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"",
+							"let username = jsonData.username;",
+							"pm.environment.set(\"username\", username);",
+							"let fullname = jsonData.fullname;",
+							"const myArray = fullname.split(\" \");",
+							"let firstName = myArray[0];",
+							"pm.environment.set(\"firstName\", firstName);",
+							"let lastName = myArray[1];",
+							"pm.environment.set(\"lastName\", lastName);",
+							"let email = jsonData.email;",
+							"pm.environment.set(\"email\", email);",
+							"",
+							"console.log(\"username was: \"+ username)",
+							"console.log(\"firstName was: \"+ firstName)",
+							"console.log(\"lastName was: \"+ lastName)",
+							"console.log(\"email was: \"+ email)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:9552/customers/{{username}}",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "9552",
+					"path": [
+						"customers",
+						"{{username}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order 2551",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var orderId = pm.variables.replaceIn('{{$randomUUID}}');",
+							"console.info(\"orderId is: \"+ orderId);",
+							"pm.variables.set(\"orderId\", orderId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\": \"{{orderId}}\"\n}"
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:9551/customers/{{username}}/addorder",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "9551",
+					"path": [
+						"customers",
+						"{{username}}",
+						"addorder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order 2552",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var orderId = pm.variables.replaceIn('{{$randomUUID}}');",
+							"console.info(\"orderId is: \"+ orderId);",
+							"pm.variables.set(\"orderId\", orderId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"orderId\": \"{{orderId}}\"\n}"
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:9552/customers/{{username}}/addorder",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "9552",
+					"path": [
+						"customers",
+						"{{username}}",
+						"addorder"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Orders for Customer 2551",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/customers/{{username}}/orders",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"customers",
+						"{{username}}",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management 8551",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:8551/cluster/members",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8551",
+					"path": [
+						"cluster",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Management 8552",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:8552/cluster/members",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "8552",
+					"path": [
+						"cluster",
+						"members"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
