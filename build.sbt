@@ -43,7 +43,9 @@ libraryDependencies ++= Seq(
   Cinnamon.library.cinnamonCHMetrics,
   Cinnamon.library.cinnamonAkka,
   Cinnamon.library.cinnamonAkkaHttp,
-  Cinnamon.library.cinnamonJvmMetricsProducer
+  Cinnamon.library.cinnamonJvmMetricsProducer,
+  Cinnamon.library.cinnamonPrometheus,
+  Cinnamon.library.cinnamonPrometheusHttpServer
 )
 
 PB.targets in Compile := Seq(
