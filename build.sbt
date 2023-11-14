@@ -15,7 +15,7 @@ lazy val logbackVersion = "1.2.3"
 lazy val scalaTestVersion = "3.2.2"
 
 fork := true
-parallelExecution in ThisBuild := false
+ThisBuild / parallelExecution := false
 
 scalacOptions ++= Seq("-deprecation", "-Xfatal-warnings")
 
@@ -48,12 +48,12 @@ libraryDependencies ++= Seq(
   Cinnamon.library.cinnamonPrometheusHttpServer
 )
 
-PB.targets in Compile := Seq(
-  scalapb.gen() -> (sourceManaged in Compile).value
+Compile / PB.targets := Seq(
+  scalapb.gen() -> (Compile / sourceManaged).value
 )
 
 enablePlugins(JavaAppPackaging)
 enablePlugins(Cinnamon)
 
-cinnamon in run := true
-cinnamon in test := true
+run / cinnamon := true
+test / cinnamon := true
