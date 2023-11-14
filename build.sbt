@@ -7,9 +7,9 @@ version := "0.1-SNAPSHOT"
 
 scalaVersion := "2.13.4"
 
-lazy val akkaHttpVersion = "10.2.2"
-lazy val akkaVersion    = "2.8.0"
-lazy val akkaManagementVersion =  "1.0.9"
+lazy val akkaHttpVersion = "10.5.1"
+lazy val akkaVersion    = "2.8.2"
+lazy val akkaManagementVersion =  "1.4.1"
 lazy val leveldbVersion = "1.8"
 lazy val logbackVersion = "1.2.3"
 lazy val scalaTestVersion = "3.2.2"
