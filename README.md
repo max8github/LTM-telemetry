@@ -39,3 +39,8 @@ Alternatively, you can use `curl` commands as described in [this page](docs/curl
 ```shell
  sbt test
 ```
+
+## Running Gatling Simulation
+```shell
+sbt gatling:test
+```

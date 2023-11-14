@@ -1,8 +1,13 @@
 package com.reactivebbq.customers
 
 import com.reactivebbq.customers.CustomerProtocol._
+import spray.json.DefaultJsonProtocol
 
 trait CustomerDTO
+
+object CustomerJsonProtocol extends DefaultJsonProtocol {
+  implicit val customerFormat = jsonFormat5(CreateCustomerDTO)
+}
 
 case class CreateCustomerDTO(
     username: String,
